@@ -23,8 +23,8 @@ pipeline {
             steps {
                 withSonarQubeEnv("${SONAR_SERVER_NAME}") {
                     echo "Starting code quality scan..."
-                    // If you have a standalone project scanner, uncomment below:
-                    // sh 'sonar-scanner'
+                    // Remove the '//' to uncomment this line so it actually runs!
+                    sh 'sonar-scanner'
                 }
             }
         }
