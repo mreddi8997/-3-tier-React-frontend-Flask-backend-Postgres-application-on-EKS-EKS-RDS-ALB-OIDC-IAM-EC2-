@@ -22,7 +22,7 @@ pipeline {
         stage('2. Code Analysis with SonarQube') {
             tools {
                 // This tells Jenkins to automatically download and use the tool we named in the UI
-                sonarRunner 'sonar-scanner'
+                sonarScanner 'sonar-scanner'
             }
             steps {
                 withSonarQubeEnv("${SONAR_SERVER_NAME}") {
