@@ -20,19 +20,20 @@ pipeline {
         }
 
         stage('2. Code Analysis with SonarQube') {
-            tools {
-                // This tells Jenkins to automatically download and use the tool we named in the UI
-                sonarScanner 'sonar-scanner'
-            }
-            steps {
-                withSonarQubeEnv("${SONAR_SERVER_NAME}") {
-                    echo "Starting native code quality scan..."
-                    
-                    // Run the native scanner tool directly in the workspace
-                    sh "sonar-scanner -Dsonar.projectKey=my-devops-app -Dsonar.sources=."
-                }
+    steps {
+        script {
+            def scannerHome = tool 'sonar-scanner'
+
+            withSonarQubeEnv("${SONAR_SERVER_NAME}") {
+                sh """
+                    ${scannerHome}/bin/sonar-scanner \
+                    -Dsonar.projectKey=my-devops-app \
+                    -Dsonar.sources=.
+                """
             }
         }
+    }
+}
         
         stage('2b. Quality Gate Verification') {
             steps {
