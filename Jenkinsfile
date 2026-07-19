@@ -20,19 +20,16 @@ pipeline {
         }
 
         stage('2. Code Analysis with SonarQube') {
+            tools {
+                // This tells Jenkins to automatically download and use the tool we named in the UI
+                sonarRunner 'sonar-scanner'
+            }
             steps {
                 withSonarQubeEnv("${SONAR_SERVER_NAME}") {
-                    echo "Starting code quality scan..."
-                    // Remove the '//' to uncomment this line so it actually runs!
-                    sh """
-                        docker run --rm \
-                        -v "${WORKSPACE}:/usr/src" \
-                        sonarsource/sonar-scanner-cli \
-                        -Dsonar.host.url="${SONAR_HOST_URL}" \
-                        -Dsonar.token="${SONAR_AUTH_TOKEN}" \
-                        -Dsonar.projectKey=my-devops-app \
-                        -Dsonar.sources=.
-                    """
+                    echo "Starting native code quality scan..."
+                    
+                    // Run the native scanner tool directly in the workspace
+                    sh "sonar-scanner -Dsonar.projectKey=my-devops-app -Dsonar.sources=."
                 }
             }
         }
