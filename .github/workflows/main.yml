@@ -1,0 +1,11 @@
+name: workflow-1
+on: workflow_dispatch
+
+jobs:
+  job-1:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: print a message
+        run: echo "this is a message"
+
+        
