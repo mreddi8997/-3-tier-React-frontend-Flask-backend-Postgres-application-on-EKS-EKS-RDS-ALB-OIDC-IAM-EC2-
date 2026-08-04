@@ -30,7 +30,7 @@ jobs:
 
       - name: Run Tests
         run: |
-          pytest
+          pytest  3-tier-app-eks/backend
 
   build:
     name: Build Docker Image
