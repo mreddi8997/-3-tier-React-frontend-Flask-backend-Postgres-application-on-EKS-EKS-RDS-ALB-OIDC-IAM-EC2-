@@ -41,12 +41,17 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: 3-tier-app-eks/backend # Path to the folder containing the Dockerfile
+          file: 3-tier-app-eks/backend/Dockerfile # Path to the Dockerfile
+          push: false
+          tags: my-app:latest
 
       - name: Build Docker Image
         run: |
-          docker build -t my-backend:latest .
+          docker build -t my-app:latest -f 3-tier-app-eks/backend/Dockerfile ./backend
 
       - name: Scan Image with Trivy
         uses: aquasecurity/trivy-action@v0.36.0
