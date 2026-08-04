@@ -51,7 +51,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t my-app:latest -f 3-tier-app-eks/backend/Dockerfile ./backend
+          docker build -t my-app:latest -f 3-tier-app-eks/backend/Dockerfile 3-tier-app-eks/backend
 
       - name: Scan Image with Trivy
         uses: aquasecurity/trivy-action@v0.36.0
