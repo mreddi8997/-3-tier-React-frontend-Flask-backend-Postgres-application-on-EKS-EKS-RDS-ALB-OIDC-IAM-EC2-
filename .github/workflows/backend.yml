@@ -54,7 +54,7 @@ jobs:
           docker build -t my-app:latest -f 3-tier-app-eks/backend/Dockerfile 3-tier-app-eks/backend
 
       - name: Scan Image with Trivy
-        uses: aquasecurity/trivy-action@v0.73.0
+        uses: aquasecurity/trivy-action@v0.70.0
         with:
           image-ref: my-app:latest 
           format: table
