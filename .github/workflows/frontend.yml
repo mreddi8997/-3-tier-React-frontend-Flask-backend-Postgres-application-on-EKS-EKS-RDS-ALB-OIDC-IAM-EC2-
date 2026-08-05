@@ -1,6 +1,6 @@
 name: frontend CI
 
-on:
+# on:
   push:
     branches:
       - main
