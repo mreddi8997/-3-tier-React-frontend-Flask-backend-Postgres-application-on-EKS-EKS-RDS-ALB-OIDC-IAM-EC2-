@@ -18,6 +18,7 @@ jobs:
         with:
           node-version: '24'
           cache: npm
+          cache-dependency-path: 3-tier-app-eks/frontend/package-lock.json
 
       - name: Install Dependencies
         run: npm install
