@@ -21,9 +21,11 @@ jobs:
           cache-dependency-path: 3-tier-app-eks/frontend/package-lock.json
 
       - name: Install Dependencies
+        working-directory: 3-tier-app-eks/frontend
         run: npm install
 
       - name: Test the code
+        working-directory: 3-tier-app-eks/frontend
         run: npm test
 
   build:
