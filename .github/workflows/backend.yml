@@ -70,7 +70,7 @@ jobs:
 
       - name: Tag Docker Image
         run: |
-          docker tag my-backend:latest \
+          docker tag my-app:latest \
             ${{ secrets.DOCKER_USERNAME }}/my-backend:latest
 
       - name: Push Docker Image
