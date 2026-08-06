@@ -2,7 +2,7 @@ resource "aws_db_instance" "postgredb" {
   allocated_storage    = 10
   max_allocated_storage = 20
   storage_type         = "gp2"
-  db_name              = "mydb"
+  db_name              = "mydb1"
   engine               = "postgres"
   engine_version       = "14.15"
   instance_class       = "db.t3.micro"
