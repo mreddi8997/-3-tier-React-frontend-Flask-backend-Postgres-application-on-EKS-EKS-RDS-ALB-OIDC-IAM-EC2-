@@ -26,7 +26,7 @@ resource "aws_db_instance" "postgredb" {
 
 resource "aws_db_subnet_group" "mydb_subnet_group" {
   name       = "mydb-subnet-group"
-  subnet_ids = [aws_subnet.rds_1.id]
+  subnet_ids = [aws_subnet.rds_1.id, aws_subnet.rds_2.id]
 
 
   tags = {
