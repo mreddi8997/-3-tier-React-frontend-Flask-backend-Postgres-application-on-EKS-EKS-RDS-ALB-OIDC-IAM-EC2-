@@ -9,7 +9,7 @@ resource "aws_db_instance" "postgredb" {
   port                 = 5432
   publicly_accessible  = false
   db_subnet_group_name = aws_db_subnet_group.mydb_subnet_group.name
-  username             = "admin"
+  username             = "mohit"
   password             = "password"
   parameter_group_name = "default.postgres14"
   skip_final_snapshot  = true
