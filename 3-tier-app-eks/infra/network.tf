@@ -33,7 +33,6 @@ resource "aws_subnet" "private_subnet_1" {
   tags = {
     Name = "private-subnet-1"
     environment = "production"
-    kubernetes.io/role/internal-elb = "1"
   }
 }
 
@@ -56,7 +55,6 @@ resource "aws_subnet" "private_subnet_3" {
   tags = {
     Name = "private-subnet-3"
     environment = "production"
-    kubernetes.io/role/internal-elb = "2"
   } 
 }
 
