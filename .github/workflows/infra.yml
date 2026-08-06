@@ -1,1 +1,79 @@
+name: Terraform Deploy
 
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 3-tier-app-eks/infra
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::431445718171:role/github-infra
+          aws-region: us-east-2
+          audience: sts.amazonaws.com
+
+      - name: Verify AWS Identity
+        run: |
+          aws sts get-caller-identity
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.0"
+
+      # 1. Native Format Check
+      - name: Terraform Format
+        run: terraform fmt -check -recursive
+
+      # 2. Native Validation
+      - name: Terraform Init & Validate
+        run: |
+          terraform init 
+          terraform validate
+
+      # 3. TFLint (Linter)
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v4
+        with:
+          tflint_version: "v0.52.0"
+
+      - name: Run TFLint
+        run: |
+          tflint --init
+          tflint -f compact
+
+      # 4. Trivy (IaC Security & Misconfiguration Scan)
+      - name: Run Trivy IaC Scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'config'
+          scan-ref: '3-tier-app-eks/infra'
+          hide-shortcut-text: 'true'
+          exit-code: '0' # Fails build if security violations are found
+          severity: 'CRITICAL,HIGH'
+
+      # 5. Checkov (Policy & Compliance Scan)
+      - name: Run Checkov
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: '3-tier-app-eks/infra'
+          framework: 'terraform'
+          soft_fail: true # Set to true if you don't want to block builds on soft warnings
+
+      - name: terraform apply
+        run: terraform apply -auto-approve
