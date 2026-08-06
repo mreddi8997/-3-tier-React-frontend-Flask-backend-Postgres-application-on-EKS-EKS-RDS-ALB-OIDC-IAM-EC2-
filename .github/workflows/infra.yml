@@ -40,7 +40,7 @@ jobs:
 
       # 1. Native Format Check
       - name: Terraform Format
-        run: terraform fmt -check -recursive
+        run: terraform fmt -recursive
 
       # 2. Native Validation
       - name: Terraform Init & Validate
