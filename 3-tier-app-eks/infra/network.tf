@@ -1,7 +1,6 @@
 # This file contains the configuration for the main VPC, subnets, and other network resources.
 resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
-  region     = "us-east-2"
   enable_dns_support   = true
   enable_dns_hostnames = true
  
