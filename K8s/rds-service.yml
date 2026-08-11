@@ -1,1 +1,12 @@
-
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-db
+  namespace: 3-tier-app-eks
+  labels:
+    service: database
+spec:
+  type: ExternalName
+  externalName: terraform-2026081121365401270000000d.c9oqic40kui5.us-east-2.rds.amazonaws.com
+  ports:
+  - port: 5432
