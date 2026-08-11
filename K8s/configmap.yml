@@ -1,1 +1,10 @@
-
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: 3-tier-app-eks
+data:
+  DB_HOST: "terraform-2026081121365401270000000d.c9oqic40kui5.us-east-2.rds.amazonaws.com"
+  DB_NAME: "mydb1"
+  DB_PORT: "5432"
+  FLASK_DEBUG: "0"
