@@ -63,6 +63,8 @@ kind: Service
 metadata:
   name: backend
   namespace: 3-tier-app-eks
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: "/api"
 spec:
   selector:
     app: backend
