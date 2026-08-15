@@ -54,6 +54,8 @@ kind: Service
 metadata:
   name: frontend
   namespace: 3-tier-app-eks
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: "/" 
 spec:
   selector:
     app: frontend
