@@ -74,8 +74,6 @@ jobs:
           framework: 'terraform'
           soft_fail: true # Set to true if you don't want to block builds on soft warnings
 
-      - name: terraform apply
-        run: terraform apply -auto-approve
 
       - name: Terraform Destroy
         if: always() # Ensures destroy runs even if previous testing steps fail
