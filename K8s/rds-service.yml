@@ -8,6 +8,3 @@ metadata:
 spec:
   type: ExternalName
   externalName: terraform-2026082511044716330000000d.c9oqic40kui5.us-east-2.rds.amazonaws.com
-  - port: 5432
-    targetPort: 5432
-    protocol: TCP
