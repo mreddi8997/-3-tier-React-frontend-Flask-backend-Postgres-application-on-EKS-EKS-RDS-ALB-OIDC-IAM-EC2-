@@ -75,7 +75,7 @@ jobs:
           soft_fail: true # Set to true if you don't want to block builds on soft warnings
 
 
-      - name: Terraform apply
+      - name: Terraform destroy
         if: always()
-        run: terraform apply -auto-approve
+        run: terraform destroy -auto-approve
       
