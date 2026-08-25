@@ -11,7 +11,7 @@ function Home() {
     const fetchTopics = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`${API_URL}/topics`, {
+        onst response = await fetch(`${API_URL}/api/topics`, {
           method: 'GET',
           headers: {
             'Accept': 'application/json',
