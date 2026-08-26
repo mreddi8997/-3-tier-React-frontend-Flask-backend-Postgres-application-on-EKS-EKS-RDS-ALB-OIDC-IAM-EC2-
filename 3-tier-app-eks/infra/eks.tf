@@ -16,7 +16,7 @@ module "eks" {
   eks_managed_node_group_defaults = {
     instance_types = ["t3.small", "t3.micro", "c7i-flex.large]
 
-    depends_on = [aws_security_group.vpc_all_traffic, aws_vpc.main]
+    depends_on = [aws_security_group.vpc_all_traffic, aws_vpc.main"]
   }
 
   # Fixed: Moved inside the module block and removed empty ami_type
