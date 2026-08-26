@@ -14,7 +14,7 @@ module "eks" {
   cluster_additional_security_group_ids = [aws_security_group.vpc_all_traffic.id]
 
   eks_managed_node_group_defaults = {
-    instance_types = ["t3.small", "t3.micro"]
+    instance_types = ["t3.small", "t3.micro", "c7i-flex.large]
 
     depends_on = [aws_security_group.vpc_all_traffic, aws_vpc.main]
   }
@@ -23,7 +23,7 @@ module "eks" {
   eks_managed_node_groups = {
     example = {
       ami_type     = "AL2023_x86_64_STANDARD"  
-      instance_types = ["t3.small"]
+      instance_types = ["c7i-flex.large"]
 
       min_size     = 2
       max_size     = 4
