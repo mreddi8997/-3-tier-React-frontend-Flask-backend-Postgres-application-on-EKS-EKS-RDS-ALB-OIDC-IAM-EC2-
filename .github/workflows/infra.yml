@@ -72,10 +72,10 @@ jobs:
         with:
           directory: '3-tier-app-eks/infra'
           framework: 'terraform'
-          soft_fail: true # Set to true if you don't want to block builds on soft warnings
+          soft_fail: true # Set to true if you don't want to block builds on soft warnings 
 
 
       - name: Terraform apply
         if: always()
-        run: terraform destroy -auto-approve
+        run: terraform apply -auto-approve
       
